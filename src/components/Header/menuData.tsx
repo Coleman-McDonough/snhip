@@ -19,5 +19,11 @@ const menuData: Menu[] = [
     path: "/materials",
     newTab: false,
   },
+  {
+    id: 4,
+    title: "Properties",
+    path: "/properties",
+    newTab: false,
+  },
 ];
 export default menuData;
