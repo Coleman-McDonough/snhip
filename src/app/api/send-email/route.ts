@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     });
 
     const mailOptions = {
-      from: `SNHIP Email <emailer@toylocker.llc>`,
+      from: `SNHIP Email <emailer@snhindustrialpark.com>`,
       to: process.env.EMAIL_TO,
       subject: `SNHIP message from ${name}`,
       text: message,
