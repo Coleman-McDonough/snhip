@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"; // Next.js App Router's way of handling 404s
-import { MaterialsEntry } from "../../models/EntrySchemas";
+import { EquipmentEntry } from "../../models/EntrySchemas";
 import { formatStringAsNumber, isNumeric } from "../../lib/helpers";
 import ModalWrapper from "@/components/ModalWrapper";
 import Contact from "@/components/Contact";
@@ -12,12 +12,12 @@ interface Props {
   };
 }
 
-// Fetch data from either materials, materials, or materials based on the type
+// Fetch data from either property, equipment, or materials based on the type
 async function fetchData(
   urlEnd: string,
   origin: string,
-  type: "materials",
-): Promise<MaterialsEntry | null> {
+  type: "equipment",
+): Promise<EquipmentEntry | null> {
   const response = await fetch(`${origin}/api/${type}?urlEnd=${urlEnd}`, {
     cache: "no-store", // Ensure fresh data on each request
   });
@@ -31,7 +31,7 @@ async function fetchData(
   return data || null;
 }
 
-export default async function MaterialsPage({
+export default async function EquipmentPage({
   params,
 }: {
   params: { urlEnd: string };
@@ -41,17 +41,17 @@ export default async function MaterialsPage({
     process.env.VERCEL_URL ||
     "http://localhost:3000"; // Fallback to localhost in development
 
-  let entry = await fetchData(params.urlEnd, origin, "materials");
+  let entry = await fetchData(params.urlEnd, origin, "equipment");
 
   if (!entry) {
     notFound();
   }
 
   return (
-    <div className="container mx-auto mt-32 max-w-screen-lg bg-white p-4 text-black sm:mt-44">
+    <div className="container mx-auto mt-32 max-w-screen-lg bg-white p-4 text-black">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <a
-          href={`/materials`}
+          href={`/`}
           className="rounded bg-red-500 p-4 py-4 text-center text-white hover:bg-red-600"
         >
           ◀ Back
@@ -74,20 +74,9 @@ export default async function MaterialsPage({
         />
       </ModalWrapper>
       <div className="space-y-4">
-        <p className={`rounded border-2 p-4`}>
-          <strong>Self Pickup Price:</strong>{" "}
-          {`${
-            isNumeric(entry.pickupPrice)
-              ? `$${formatStringAsNumber(entry.pickupPrice)} per yard`
-              : `${entry.pickupPrice}`
-          }`}
-          <br />
-          <strong>Local Delivery Price:</strong>{" "}
-          {`${
-            isNumeric(entry.deliveryPrice)
-              ? `$${formatStringAsNumber(entry.deliveryPrice)} per 20 yard load`
-              : `${entry.deliveryPrice}`
-          }`}
+        <p className="rounded border-2 p-4">
+          <strong>Price:</strong> $
+          {formatStringAsNumber((entry as EquipmentEntry).price)}
         </p>
         <p className="whitespace-pre-wrap rounded border-2 p-4">
           <strong>Description:</strong> {entry.description}

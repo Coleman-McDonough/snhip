@@ -2,11 +2,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../lib/fetchData";
 import { MaterialsEntry } from "../models/EntrySchemas";
-import {
-  formatStringAsNumber,
-  convertSquareFeetToAcres,
-  isNumeric,
-} from "../lib/helpers";
+import { formatStringAsNumber, isNumeric } from "../lib/helpers";
 
 function MaterialsPage() {
   const [materials, setMaterials] = useState<MaterialsEntry[]>([]);
