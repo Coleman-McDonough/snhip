@@ -74,26 +74,38 @@ export default async function MaterialsPage({
         />
       </ModalWrapper>
       <div className="space-y-4">
-        <p className={`rounded border-2 p-4`}>
-          <strong>Self Pickup Price:</strong>{" "}
-          {`${
-            isNumeric(entry.pickupPrice)
-              ? `$${formatStringAsNumber(entry.pickupPrice)} per yard`
-              : `${entry.pickupPrice}`
-          }`}
-          <br />
-          <strong>Local Delivery Price:</strong>{" "}
-          {`${
-            isNumeric(entry.deliveryPrice)
-              ? `$${formatStringAsNumber(entry.deliveryPrice)} per 20 yard load`
-              : `${entry.deliveryPrice}`
-          }`}
-        </p>
         <p className="whitespace-pre-wrap rounded border-2 p-4">
           <strong>Description:</strong> {entry.description}
         </p>
+        <div className="mt-8">
+          <h2
+            className={`text-2xl font-semibold ${entry.typesAndPrices.length === 1 ? "hidden" : ""}`}
+          >
+            Types:
+          </h2>
+          <div
+            className={`mt-4 ${entry.typesAndPrices.length === 1 ? "" : "flex flex-col gap-4 sm:flex-row sm:gap-8"}`}
+          >
+            {entry.typesAndPrices.map((typePrice, index) => (
+              <div key={index} className="rounded-lg border p-4">
+                <h3 className={`text-lg font-bold`}>{typePrice.type}</h3>
+                <p className="text-gray-800">
+                  {`Pickup Price: `}
+                  {isNumeric(typePrice.pickupPrice)
+                    ? `$${formatStringAsNumber(typePrice.pickupPrice)}`
+                    : formatStringAsNumber(typePrice.pickupPrice)}
+                </p>
+                <p className="text-gray-800">
+                  {`Delivery Price: `}
+                  {isNumeric(typePrice.deliveryPrice)
+                    ? `$${formatStringAsNumber(typePrice.deliveryPrice)}`
+                    : formatStringAsNumber(typePrice.deliveryPrice)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <p className="mt-2 text-center">Coleman McDonough 978-375-7001</p>
       <Contact />
     </div>
   );

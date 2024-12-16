@@ -1,3 +1,4 @@
+// src/app/materials/page.tsx
 "use client";
 import { useEffect, useState } from "react";
 import { fetchData } from "../lib/fetchData";
@@ -79,24 +80,25 @@ function MaterialsPage() {
                     <h2 className="text-gradient mb-2 text-xl font-semibold">
                       {item.name}
                     </h2>
-                    <p className="text-lg text-gray-400">
-                      {`${
-                        isNumeric(item.pickupPrice)
-                          ? `$${formatStringAsNumber(
-                              item.pickupPrice,
-                            )}\\yd self pickup`
-                          : `${item.pickupPrice}`
-                      }`}
-                    </p>
-                    <p className="text-lg text-gray-400">
-                      {`${
-                        isNumeric(item.deliveryPrice)
-                          ? `$${formatStringAsNumber(
-                              item.deliveryPrice,
-                            )}\\20yds local delivery`
-                          : `${item.deliveryPrice}`
-                      }`}
-                    </p>
+                    {item.typesAndPrices.map((typePrice, index) => (
+                      <div key={index} className=" text-gray-400">
+                        <p className="text-lg">
+                          <strong className=" underline">{`${typePrice.type}`}</strong>
+                        </p>
+                        <p className="text-lg">
+                          {`Pickup Price: `}
+                          {isNumeric(typePrice.pickupPrice)
+                            ? `$${formatStringAsNumber(typePrice.pickupPrice)}`
+                            : formatStringAsNumber(typePrice.pickupPrice)}
+                        </p>
+                        <p className="text-lg">
+                          {`Delivery Price: `}
+                          {isNumeric(typePrice.deliveryPrice)
+                            ? `$${formatStringAsNumber(typePrice.deliveryPrice)}`
+                            : formatStringAsNumber(typePrice.deliveryPrice)}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
