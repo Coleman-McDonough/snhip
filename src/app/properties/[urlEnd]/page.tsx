@@ -54,7 +54,7 @@ export default async function PropertyPage({
     <div className="container mx-auto mt-32 max-w-screen-lg bg-white p-4 text-black sm:mt-44">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <a
-          href={`/`}
+          href={`/properties`}
           className="rounded bg-red-500 p-4 py-4 text-center text-white hover:bg-red-600"
         >
           ◀ Back

@@ -115,6 +115,7 @@ const Header = () => {
                                 ? "dark:text-white text-primary"
                                 : "dark:text-white/70 dark:hover:text-white text-dark hover:text-primary"
                             }`}
+                            onClick={() => setNavbarOpen(false)} // Close menu on click
                           >
                             {menuItem.title}
                           </Link>
@@ -146,6 +147,7 @@ const Header = () => {
                                   href={submenuItem.path}
                                   key={index}
                                   className="dark:text-white/70 dark:hover:text-white block rounded py-2.5 text-sm text-dark hover:text-primary lg:px-3"
+                                  onClick={() => setNavbarOpen(false)} // Close menu on click
                                 >
                                   {submenuItem.title}
                                 </Link>

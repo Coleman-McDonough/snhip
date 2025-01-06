@@ -51,7 +51,7 @@ export default async function EquipmentPage({
     <div className="container mx-auto mt-32 max-w-screen-lg bg-white p-4 text-black">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <a
-          href={`/`}
+          href={`/equipment`}
           className="rounded bg-red-500 p-4 py-4 text-center text-white hover:bg-red-600"
         >
           ◀ Back
