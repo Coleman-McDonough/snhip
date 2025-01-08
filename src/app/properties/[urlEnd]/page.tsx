@@ -81,8 +81,11 @@ export default async function PropertyPage({
           <strong>Address:</strong> {entry.address}
         </p>
         <p className={`${entry.isRental ? "hidden" : ""} rounded border-2 p-4`}>
-          <strong>Acres:</strong>{" "}
-          {convertSquareFeetToAcres(entry.squareFootage)}
+          <strong>Size:</strong>{" "}
+          {!isNaN(Number(entry.squareFootage)) &&
+          Number(entry.squareFootage) > 10890
+            ? `${convertSquareFeetToAcres(entry.squareFootage)} acres`
+            : `${formatStringAsNumber(entry.squareFootage)} sq.ft.`}
         </p>
         <p
           className={`${!entry.isRental ? "hidden" : ""} rounded border-2 p-4`}

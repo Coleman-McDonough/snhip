@@ -85,7 +85,10 @@ function MainPage() {
                       {item.name}
                     </h2>
                     <p className="text-lg text-gray-400">
-                      {convertSquareFeetToAcres(item.squareFootage)} acres
+                      {!isNaN(Number(item.squareFootage)) &&
+                      Number(item.squareFootage) > 10890
+                        ? `${convertSquareFeetToAcres(item.squareFootage)} acres`
+                        : `${formatStringAsNumber(item.squareFootage)} sq.ft.`}
                     </p>
                     <p className="text-lg text-gray-400">
                       ${formatStringAsNumber(item.price)}
