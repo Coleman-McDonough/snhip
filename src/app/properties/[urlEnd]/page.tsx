@@ -6,6 +6,7 @@ import {
 } from "../../lib/helpers";
 import ModalWrapper from "@/components/ModalWrapper";
 import Contact from "@/components/Contact";
+import TextWithLinks from "@/components/TextWithLinks";
 
 export const revalidate = 0; // Disable ISR and ensure the page is always fetched dynamically
 
@@ -98,8 +99,9 @@ export default async function PropertyPage({
           {formatStringAsNumber((entry as PropertyEntry).price)}
           {entry.isRental ? "/month" : ""}
         </p>
-        <p className="whitespace-pre-wrap rounded border-2 p-4">
-          <strong>Description:</strong> {entry.description}
+        <p className="whitespace-pre-wrap border-2 p-4">
+          <strong>Description:</strong>{" "}
+          <TextWithLinks text={entry.description} />
         </p>
       </div>
       <p className="mt-2 text-center">Coleman McDonough 978-375-7001</p>
