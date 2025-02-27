@@ -25,9 +25,7 @@ export async function GET(req: NextRequest) {
     console.log(`QR Visitor Logged: ${ip}`);
 
     // Redirect to main page with `?qr=true` to prevent duplicate tracking
-    return NextResponse.redirect(
-      "https://www.cpmcdonoughconstructioncorp.com/?qr=true",
-    );
+    return NextResponse.redirect("https://www.snhindustrialpark.com/?qr=true");
   } catch (error) {
     console.error("QR Tracking Error:", error);
     return NextResponse.json(
