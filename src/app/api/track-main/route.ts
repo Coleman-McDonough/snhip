@@ -6,6 +6,12 @@ import { ObjectId } from "mongodb";
 
 export async function GET(req: NextRequest) {
   try {
+    const searchParams = req.nextUrl.searchParams;
+    if (searchParams.get("qr") === "true") {
+      console.log("Skipping logging for QR visitor on main page.");
+      return NextResponse.json({ message: "QR visitor, skipping log" });
+    }
+
     const userAgent = req.headers.get("user-agent") || "";
     const deviceType = /mobile|android|iphone|ipad|ipod/i.test(userAgent)
       ? "mobile"
@@ -14,7 +20,7 @@ export async function GET(req: NextRequest) {
 
     const { db } = await connectToMongodbVisitors();
 
-    await db.collection("qrCode").insertOne({
+    await db.collection("mainPage").insertOne({
       _id: new ObjectId(),
       ip,
       deviceType,
@@ -22,14 +28,13 @@ export async function GET(req: NextRequest) {
       userAgent: userAgent,
     });
 
-    console.log(`QR Visitor Logged: ${ip}`);
+    console.log(`Main Page Visitor Logged: ${ip}`);
 
-    // Redirect to main page with `?qr=true` to prevent duplicate tracking
-    return NextResponse.redirect("https://www.snhindustrialpark.com/?qr=true");
+    return NextResponse.json({ message: "Main page visitor logged" });
   } catch (error) {
-    console.error("QR Tracking Error:", error);
+    console.error("Main Page Tracking Error:", error);
     return NextResponse.json(
-      { message: "Failed to track QR visitor" },
+      { message: "Failed to track visitor" },
       { status: 500 },
     );
   }
