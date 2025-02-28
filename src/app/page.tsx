@@ -24,7 +24,8 @@ export default function Home() {
     <>
       <VisitorTracker />
       <ScrollUp />
-      <Hero />
+      <Video />
+      {/* <Hero /> */}
       <Features />
       <AboutSectionTwo />
       <AboutSectionOne />

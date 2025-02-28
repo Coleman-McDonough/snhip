@@ -2,21 +2,30 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import SectionTitle from "../Common/SectionTitle";
-
 import ModalVideo from "react-modal-video";
+
+import VideoSectionTitle from "../Common/VideoSectionTitle";
 
 const Video = () => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <section className="relative z-10 py-16 md:py-20 lg:py-28">
+    <section className="relative z-10 mt-28 py-8 lg:py-12">
       <div className="container">
-        <SectionTitle
-          title="We are ready to help"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+        <VideoSectionTitle
+          title="Phase 2: Expansion in Newton, NH"
+          paragraph={
+            <>
+              Aerial drone footage of <strong>Building 1</strong> at our{" "}
+              <strong>Phase 2</strong> industrial expansion in{" "}
+              <strong>Newton, NH</strong>. We offer{" "}
+              <strong>flexible space for lease</strong> and{" "}
+              <strong>build-to-suit opportunities</strong> for businesses
+              looking to grow.
+            </>
+          }
           center
-          mb="80px"
+          mb="40px"
         />
 
         <div className="-mx-4 flex flex-wrap">
@@ -26,7 +35,11 @@ const Video = () => {
               data-wow-delay=".15s"
             >
               <div className="relative aspect-[77/40] items-center justify-center">
-                <Image src="/images/video/video.jpg" alt="video image" fill />
+                <Image
+                  src="/images/video/building1.jpg"
+                  alt="Aerial view of Buidling 1 in Phase 2, Southern New Hampshire Industrial Park in Newton, New Hampshire"
+                  fill
+                />
                 <div className="absolute right-0 top-0 flex h-full w-full items-center justify-center">
                   <button
                     aria-label="video play button"
@@ -54,7 +67,7 @@ const Video = () => {
         autoplay={true}
         start={true}
         isOpen={isOpen}
-        videoId="L61p2uyiMSo"
+        videoId="G5HYHGAHy7A"
         onClose={() => setOpen(false)}
       />
 
