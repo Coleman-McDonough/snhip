@@ -7,6 +7,7 @@ import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
+import Slideshow from "@/components/Slideshow";
 import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
 import VisitorTracker from "@/components/VisitorTracker";
@@ -25,6 +26,7 @@ export default function Home() {
       <VisitorTracker />
       <ScrollUp />
       <Video />
+      <Slideshow />
       {/* <Hero /> */}
       <Features />
       <AboutSectionTwo />
