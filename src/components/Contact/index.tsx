@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import HCaptcha from "react-hcaptcha";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,9 +12,11 @@ const Contact = () => {
     material_amount: "",
     message: "",
   });
-  const [status, setStatus] = useState(""); // State for form submission status
-  const [errorMessage, setErrorMessage] = useState(""); // State for error message
-  const [successMessage, setSuccessMessage] = useState(""); // State for success message
+
+  const [status, setStatus] = useState(""); // Form submission status
+  const [errorMessage, setErrorMessage] = useState(""); // Error message
+  const [successMessage, setSuccessMessage] = useState(""); // Success message
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -24,21 +27,26 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("Sending...");
-    setErrorMessage(""); // Reset error message
-    setSuccessMessage(""); // Reset success message
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    // Check if hCaptcha is completed
+    if (!captchaToken) {
+      setStatus("");
+      setErrorMessage("Please complete the CAPTCHA.");
+      return;
+    }
 
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, captchaToken }),
       });
 
       const result = await response.json();
       if (result.success) {
-        setStatus(""); // Clear status
+        setStatus("");
         setSuccessMessage(
           "Your message has been sent successfully! We'll get back to you ASAP.",
         );
@@ -50,15 +58,15 @@ const Contact = () => {
           material_type: "",
           material_amount: "",
           message: "",
-        }); // Reset form fields
+        });
       } else {
-        setStatus(""); // Clear status
+        setStatus("");
         setErrorMessage(
           result.details || "An error occurred while sending the email.",
-        ); // Set error message if available
+        );
       }
     } catch (error) {
-      setStatus(""); // Clear status
+      setStatus("");
       setErrorMessage(error.message || "An unknown error occurred.");
     }
   };
@@ -146,17 +154,26 @@ const Contact = () => {
                     className="dark:bg-[#2C303B] dark:border-transparent dark:text-body-color-dark dark:shadow-two dark:focus:border-primary w-full resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-black outline-none focus:border-primary"
                   ></textarea>
                 </div>
+
+                {/* hCaptcha Field */}
+                <div className="mt-6 flex justify-center">
+                  <HCaptcha
+                    sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY!}
+                    onVerify={(token) => setCaptchaToken(token)}
+                  />
+                </div>
+
                 <div className="mt-8 text-center">
                   <button
                     type="submit"
                     className="dark:shadow-submit-dark w-full rounded-lg bg-primary px-6 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90"
-                    disabled={status === "Sending..."} // Disable button while sending
+                    disabled={status === "Sending..."}
                   >
-                    {status === "Sending..." ? "Sending..." : "Submit"}{" "}
-                    {/* Change button text based on status */}
+                    {status === "Sending..." ? "Sending..." : "Submit"}
                   </button>
                 </div>
               </form>
+
               {status && (
                 <p className="mt-4 text-center text-sm font-medium">{status}</p>
               )}
