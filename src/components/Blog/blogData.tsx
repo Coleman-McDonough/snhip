@@ -17,7 +17,7 @@ const blogData: Blog[] = [
   {
     id: 2,
     title: "Jennifer McDonough",
-    paragraph: "Vice President",
+    paragraph: "",
     image: "/images/blog/jen.png",
     author: {
       name: "cpmcdonoughconstructioncorp@gmail.com",
