@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import HCaptcha from "react-hcaptcha";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 const Contact = () => {
   const [formData, setFormData] = useState({

@@ -1,8 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
-import ModalVideo from "react-modal-video";
+
+const ModalVideo = dynamic(() => import("react-modal-video"), { ssr: false });
 
 import VideoSectionTitle from "../Common/VideoSectionTitle";
 
