@@ -3,6 +3,7 @@ import { MaterialsEntry } from "../../models/EntrySchemas";
 import { formatStringAsNumber, isNumeric } from "../../lib/helpers";
 import ModalWrapper from "@/components/ModalWrapper";
 import Contact from "@/components/Contact";
+import { publicOrigin } from "../../lib/origin";
 
 export const revalidate = 0; // Disable ISR and ensure the page is always fetched dynamically
 
@@ -36,10 +37,7 @@ export default async function MaterialsPage({
 }: {
   params: { urlEnd: string };
 }) {
-  const origin =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.VERCEL_URL ||
-    "http://localhost:3000"; // Fallback to localhost in development
+  const origin = publicOrigin();
 
   let entry = await fetchData(params.urlEnd, origin, "materials");
 
