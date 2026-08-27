@@ -15,7 +15,16 @@ class CaptchaErrorBoundary extends Component<
 > {
   state = { failed: false }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(error: unknown) {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "digest" in error &&
+      (error as { digest?: string }).digest ===
+        "BAILOUT_TO_CLIENT_SIDE_RENDERING"
+    ) {
+      throw error
+    }
     return { failed: true }
   }
 
