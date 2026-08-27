@@ -1,21 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
 
-const ModalVideo = dynamic(() => import("react-modal-video"), { ssr: false });
-import ClientErrorBoundary from "../ClientErrorBoundary";
 
-const modalClassNames = {
-  modalVideoEffect: "modal-video-effect",
-  modalVideo: "modal-video",
-  modalVideoClose: "modal-video-close",
-  modalVideoBody: "modal-video-body",
-  modalVideoInner: "modal-video-inner",
-  modalVideoIframeWrap: "modal-video-movie-wrap",
-  modalVideoCloseBtn: "modal-video-close-btn",
-};
 
 import VideoSectionTitle from "../Common/VideoSectionTitle";
 
@@ -76,18 +64,26 @@ const Video = () => {
       </div>
 
       {isOpen ? (
-        <ClientErrorBoundary>
-          <ModalVideo
-            channel="youtube"
-            autoplay={true}
-            ratio="16:9"
-            classNames={modalClassNames}
-            animationSpeed={300}
-            isOpen={isOpen}
-            videoId="G5HYHGAHy7A"
-            onClose={() => setOpen(false)}
-          />
-        </ClientErrorBoundary>
+        <div
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Video"
+        >
+          <div
+            className="relative aspect-video w-full max-w-3xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <iframe
+              className="h-full w-full rounded-md"
+              src={`https://www.youtube.com/embed/G5HYHGAHy7A?autoplay=1`}
+              title="Facility video"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
       ) : null}
 
       <div className="absolute bottom-0 left-0 right-0 z-[-1] h-full w-full bg-[url(/images/video/shape.svg)] bg-cover bg-center bg-no-repeat"></div>
