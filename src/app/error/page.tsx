@@ -1,4 +1,4 @@
-import Link from "next/link";
+import SiteLink from "@/components/Common/SiteLink";
 
 import { Metadata } from "next";
 
@@ -148,12 +148,12 @@ const ErrorPage = () => {
                   The page you were looking for appears to have been moved,
                   deleted or does not exist.
                 </p>
-                <Link
+                <SiteLink
                   href="/"
                   className="rounded-md bg-primary px-8 py-3 text-base font-bold text-white shadow-signUp duration-300 hover:bg-white hover:text-primary md:px-9 lg:px-8 xl:px-9"
                 >
                   Back to Homepage
-                </Link>
+                </SiteLink>
               </div>
             </div>
           </div>

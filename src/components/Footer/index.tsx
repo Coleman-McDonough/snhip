@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+import SiteLink from "@/components/Common/SiteLink";
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
               <div className="mb-8 max-w-[360px] lg:mb-12">
-                <Link href="/" className="mb-4 inline-block">
+                <SiteLink href="/" className="mb-4 inline-block">
                   <Image
                     src="/images/logo/snhip.jpg"
                     alt="logo"
@@ -25,24 +25,24 @@ const Footer = () => {
                     height={15}
                     className="dark:block hidden w-full"
                   />
-                </Link>
+                </SiteLink>
                 <p className="dark:text-body-color-dark mx-2 flex-col text-base leading-relaxed text-body-color">
                   Direct:
-                  <Link
+                  <a
                     href="tel:978-375-7001"
                     className="dark:text-body-color-dark dark:hover:text-primary m-2 text-body-color duration-300 hover:text-primary"
                   >
                     978-375-7001
-                  </Link>
+                  </a>
                 </p>
                 <p className="dark:text-body-color-dark mx-2 flex-col text-base leading-relaxed text-body-color">
                   Office:
-                  <Link
+                  <a
                     href="tel:603-399-5029"
                     className="dark:text-body-color-dark dark:hover:text-primary m-2 text-body-color duration-300 hover:text-primary"
                   >
                     603-399-5029
-                  </Link>
+                  </a>
                 </p>
                 <div className="dark:text-body-color-dark mb-9 text-base leading-relaxed text-body-color lg:flex">
                   <p className="m-2">
@@ -141,20 +141,20 @@ const Footer = () => {
                 </h2>
                 <ul>
                   <li>
-                    <Link
+                    <SiteLink
                       href="/"
                       className="dark:text-body-color-dark dark:hover:text-primary mb-4 inline-block text-base text-body-color duration-300 hover:text-primary"
                     >
                       Home
-                    </Link>
+                    </SiteLink>
                   </li>
                   <li>
-                    <Link
+                    <SiteLink
                       href="/team"
                       className="dark:text-body-color-dark dark:hover:text-primary mb-4 inline-block text-base text-body-color duration-300 hover:text-primary"
                     >
                       Team
-                    </Link>
+                    </SiteLink>
                   </li>
                 </ul>
               </div>
@@ -167,20 +167,20 @@ const Footer = () => {
                 </h2>
                 <ul>
                   <li>
-                    <Link
+                    <a
                       href="https://www.cpmcdonoughconstructioncorp.com/"
                       className="dark:text-body-color-dark dark:hover:text-primary mb-4 inline-block text-base text-body-color duration-300 hover:text-primary"
                     >
                       CPM Construction Corp
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link
+                    <a
                       href="https://www.cpmcdonoughconcretedisposal.com/"
                       className="dark:text-body-color-dark dark:hover:text-primary mb-4 inline-block text-base text-body-color duration-300 hover:text-primary"
                     >
                       CPM Concrete Disposal
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -193,20 +193,20 @@ const Footer = () => {
                 </h2>
                 <ul>
                   <li>
-                    <Link
+                    <a
                       href="https://www.loamdepot.com/"
                       className="dark:text-body-color-dark dark:hover:text-primary mb-4 inline-block text-base text-body-color duration-300 hover:text-primary"
                     >
                       Loam Depot
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link
+                    <a
                       href="https://toylocker.llc"
                       className="dark:text-body-color-dark dark:hover:text-primary mb-4 inline-block text-base text-body-color duration-300 hover:text-primary"
                     >
                       Toy Locker
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>

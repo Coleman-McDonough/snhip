@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import SiteLink from "@/components/Common/SiteLink";
 
 const RelatedPost = ({
   image,
@@ -21,12 +21,12 @@ const RelatedPost = ({
       </div>
       <div className="w-full">
         <h5>
-          <Link
+          <SiteLink
             href={slug}
             className="mb-[6px] block text-base font-medium leading-snug text-black hover:text-primary dark:text-white dark:hover:text-primary"
           >
             {title}
-          </Link>
+          </SiteLink>
         </h5>
         <p className="text-xs font-medium text-body-color">{date}</p>
       </div>
